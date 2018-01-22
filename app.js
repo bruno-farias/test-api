@@ -10,6 +10,9 @@ var users = require('./routes/users');
 var events = require('./routes/events');
 
 var app = express();
+var cors = require('cors')
+
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
