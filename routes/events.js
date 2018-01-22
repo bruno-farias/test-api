@@ -17,7 +17,8 @@ router.all('/', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-    res.json(result);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(result));
 });
 
 module.exports = router;
