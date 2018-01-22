@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.all('/', function(req, res, next) {
     const result = [
         {
             id: 123,
@@ -14,6 +14,9 @@ router.get('/', function(req, res, next) {
         }
     ]
 
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(result));
 });
