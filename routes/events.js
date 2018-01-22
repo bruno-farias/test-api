@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var rp = require('request-promise');
 
 /* GET home page. */
 router.all('/', function(req, res, next) {
@@ -20,5 +21,20 @@ router.all('/', function(req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(result));
 });
+
+router.all('/test', function (req, res, next) {
+    let options = { method: 'POST',
+        url: 'http://pdv.blueticket.com.br/WebService/cliente.php',
+        qs: { op: 'auto' },
+        formData: { op: 'auto', t: '666' } };
+
+    rp(options)
+        .then(function (parsedBody) {
+            res.json(decodeURIComponent(parsedBody))
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
+})
 
 module.exports = router;
